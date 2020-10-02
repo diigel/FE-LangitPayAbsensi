@@ -83,7 +83,7 @@
         </ul>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="{{ url('/index/chart') }}" class="nav-link active">
+                <a href="{{ url('/register/add') }}" class="nav-link active">
                     <i class="nav-icon fas fa-registered"></i>
                     <p>Register Form</p>
                 </a>
@@ -91,7 +91,23 @@
         </ul>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="{{ url('/index/chart') }}" class="nav-link active">
+                <a href="{{ url('/employe/index') }}" class="nav-link active">
+                    <i class="nav-icon fas fa-registered"></i>
+                    <p>Data Karyawan</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="{{ url('/presensi/index') }}" class="nav-link active">
+                    <i class="nav-icon fas fa-registered"></i>
+                    <p>Data Absensi</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="{{ url('/verification/index') }}" class="nav-link active">
                     <i class="nav-icon fas fa-user-check"></i>
                     <p>Verifikasi</p>
                 </a>
@@ -99,10 +115,21 @@
         </ul>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="{{ url('/index/chart') }}" class="nav-link active">
+                {{-- <a href="{{ url('/index/chart') }}" class="nav-link active">
                     <i class="nav-icon fas fa-file-export"></i>
                     <p>Report</p>
-                </a>
+                </a> --}}
+                
+                <li class="nav-item">
+                    <a class="nav-link active" data-widget="control-sidebar" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <i
+                    class="nav-icon fas fa-power-off"></i> {{ __('Logout ') }}</a>
+                
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
             </li>
         </ul>
     </nav>
@@ -141,15 +168,21 @@
     </footer>
 </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    {{-- <script src="{{ asset('/js/jquery.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    {{-- <script src="{{ asset('/js/dataTables.bootstrap4.js') }}"></script> --}}
+    <script src="{{ asset('/js/dataTables.bootstrap4.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    {{-- <script src="{{ asset('/js/sweetalert.min.js') }}"></script> --}}
-    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script> --}}
+
+
+    {{-- <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script> --}}
     <script>
         @if(count($errors) > 0)
             $(document).ready(function(){
@@ -157,6 +190,13 @@
                 $('#editMarketplace').modal({show: true});
             });
         @endif
+
+        $(function () {
+            $("#alltables").DataTable({
+                "bPaginate": false,
+                "bFilter": false
+            });
+        });
     </script>
 {{-- @stack('scripts') --}}
 {{-- @include('js/js') --}}

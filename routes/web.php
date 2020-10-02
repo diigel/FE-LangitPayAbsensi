@@ -20,3 +20,26 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'register'], function () {
+    Route::get('add', [App\Http\Controllers\RegisterController::class, 'index']);
+    Route::post('store', [App\Http\Controllers\RegisterController::class, 'store']);
+});
+
+Route::group(['prefix' => 'employe'], function () {
+    Route::get('index', [App\Http\Controllers\EmployeController::class, 'index']);
+    Route::get('search', [App\Http\Controllers\EmployeController::class, 'index']);
+    Route::post('store', [App\Http\Controllers\EmployeController::class, 'store']);
+});
+
+Route::group(['prefix' => 'presensi'], function () {
+    Route::get('index', [App\Http\Controllers\PresensiController::class, 'index']);
+    Route::get('search', [App\Http\Controllers\PresensiController::class, 'index']);
+});
+
+Route::group(['prefix' => 'verification'], function () {
+    Route::get('index', [App\Http\Controllers\VerificationController::class, 'index']);
+    Route::get('search', [App\Http\Controllers\VerificationController::class, 'index']);
+    Route::get('accept/{id}', [App\Http\Controllers\VerificationController::class, 'accept']);
+    Route::get('reject/{id}', [App\Http\Controllers\VerificationController::class, 'reject']);
+});
