@@ -83,7 +83,7 @@
                 <div class="row mt-3">
                   <div class="col-lg-12">
                     <ul class="pagination justify-content-end">
-                      {{ $data->appends(\Request::except('_token'))->render() }}
+                      <li class="page-item">{{ $data->appends(\Request::except('_token'))->render() }}</li>
                     </ul>
                   </div>
                 </div>

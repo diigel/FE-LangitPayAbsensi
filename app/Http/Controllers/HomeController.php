@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
         $employe = lp_user::get();
         $absensi = lp_absensi::where("created_at", ">=", date("Y-m-d") . " 00:00:00")->where("created_at", "<=", date("Y-m-d") . " 23:59:59")->get();
-        return view('home', ['employe' => count($employe), 'absensi' => count($absensi)]);
+        $verifyProcess = lp_absensi::where('verification', '0')->get();
+        return view('home', ['employe' => count($employe), 'absensi' => count($absensi), 'verifyProcess' => count($verifyProcess)]);
     }
 }

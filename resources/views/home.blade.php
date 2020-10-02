@@ -4,7 +4,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
@@ -13,12 +13,12 @@
                   <p>Karyawan</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fas fa-users"></i>
                 </div>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
@@ -32,21 +32,21 @@
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
+                  <h3>{{$verifyProcess}}</h3>
     
-                  <p>User Registrations</p>
+                  <p>Absen Proses</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="fas fa-user-check"></i>
                 </div>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            {{-- <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
@@ -58,7 +58,7 @@
                   <i class="ion ion-pie-graph"></i>
                 </div>
               </div>
-            </div>
+            </div> --}}
             <!-- ./col -->
           </div>
     </div>

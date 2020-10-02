@@ -10,7 +10,7 @@
 
     {{-- <link rel="shortcut icon" href="{{ asset('img/favicon-96x96.png') }}"> --}}
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('/css/custom.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
@@ -92,7 +92,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
                 <a href="{{ url('/employe/index') }}" class="nav-link active">
-                    <i class="nav-icon fas fa-registered"></i>
+                    <i class="nav-icon fas fa-users"></i>
                     <p>Data Karyawan</p>
                 </a>
             </li>
@@ -100,7 +100,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
                 <a href="{{ url('/presensi/index') }}" class="nav-link active">
-                    <i class="nav-icon fas fa-registered"></i>
+                    <i class="nav-icon fas fa-clipboard-list"></i>
                     <p>Data Absensi</p>
                 </a>
             </li>
