@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\FCM;
 use App\Models\lp_absensi;
+use App\Models\lp_user;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class VerificationController extends Controller
 {
@@ -41,9 +45,16 @@ class VerificationController extends Controller
 
     public function accept($id)
     {
-        $data = lp_absensi::find($id);
+        $data = lp_absensi::with('user')->find($id);
         $data->verification = '1';
         $data->save();
+
+        try {
+            FCM::sendFcm($data->user->token);
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+
         return redirect('verification/index')->with('status', 'Berhasil diaccept');
     }
 

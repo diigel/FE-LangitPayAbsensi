@@ -43,3 +43,7 @@ Route::group(['prefix' => 'verification'], function () {
     Route::get('accept/{id}', [App\Http\Controllers\VerificationController::class, 'accept']);
     Route::get('reject/{id}', [App\Http\Controllers\VerificationController::class, 'reject']);
 });
+
+Route::group(['prefix' => 'fcm'], function () {
+    Route::post('register-token', [App\Http\Controllers\NotificationController::class, 'register']);
+});

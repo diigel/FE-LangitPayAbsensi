@@ -27,10 +27,8 @@
                           placeholder="Search..." value="{{\Request::get('search')}}">
                           <button type="submit" class="btn btn-primary mb-2 px-4">Search</button>
     
-                          {{-- @if (Auth::user()->role == '2')
                             <button type="submit" name="download" target="_blank" class="btn btn-primary btn-responsive ml-2 mb-2 btn-download"
                           value="1"><i class="fas fa-download"></i></i> Download</button>
-                          @endif --}}
                       </div>
                     </div>
                   </div>
@@ -95,4 +93,3 @@
     </div>
   </div>
 @endsection
-

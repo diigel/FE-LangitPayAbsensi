@@ -14,6 +14,33 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-messaging.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyDPwhEkUJs2jpe4ZT4dAQUxK1SuULeZ2Wc",
+            authDomain: "langitpayabsensi-1bc50.firebaseapp.com",
+            databaseURL: "https://langitpayabsensi-1bc50.firebaseio.com",
+            projectId: "langitpayabsensi-1bc50",
+            storageBucket: "langitpayabsensi-1bc50.appspot.com",
+            messagingSenderId: "1037070547229",
+            appId: "1:1037070547229:web:d8c4b45501b78accccc9f4",
+            measurementId: "G-3QEEZZ0BEW"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div id="app" class="wrapper">
@@ -197,6 +224,109 @@
                 "bFilter": false
             });
         });
+
+        // FCM
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('firebase-messaging-sw.js', {scope: './'}).then(function(registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                const messaging = firebase.messaging();
+                messaging.usePublicVapidKey(
+                    "BGmLjnv9PsXXCSBQsPJUyFgM9GbxTRiy1MY2ZLVjtbuNHU7oMheu3SNUI-LcXadaaObi15pB5NgKgz7ZUR8-7Xw"
+                );
+
+                        function sendTokenToServer(token) {
+                            console.log(token);            
+                            axios
+                            .post("fcm/register-token", {
+                            token
+                            })
+                            .then();
+                            // .then(response => console.log('token updated successfully'));
+                        }
+                        messaging.useServiceWorker(registration)
+                        function retrieveToken() {
+                        messaging
+                        .requestPermission()
+                        .then(function () {
+                            // console.log("Notification permission granted.");
+
+                            // get the token in the form of promise
+                            return messaging.getToken()
+                        })
+                        .then(function(token) {
+                            // console.log("The token is: "+token)
+                            if (token) {
+                                    sendTokenToServer(token);
+                                    // updateUIForPushEnabled(currentToken);
+                                } else {
+                                    alert('you should allow notification!');
+                                }
+                        })
+                        .catch(function (err) {
+                            console.log("Unable to get permission to notify.", err);
+                        });
+                        }
+
+                        retrieveToken();
+                        messaging.onTokenRefresh(() => {
+                        retrieveToken();
+                        });
+
+                        messaging.onMessage(function(payload) {
+                            console.log("Message received. ", payload);
+                            if (payload.data.status == '0') {
+                            axios
+                            .post("./api/getNotification")
+                            .then(response => {
+                                var span = document.getElementById('notifCount');
+                                var span2 = document.getElementById('notifCount2');
+                                var newSales = document.getElementById('new-sales');
+                                span.removeChild( span.firstChild );
+                                span2.removeChild( span2.firstChild );
+                                newSales.removeChild( newSales.firstChild );
+                                span.appendChild( document.createTextNode(response.data.process) );
+                                span2.appendChild( document.createTextNode(response.data.process) );
+                                newSales.appendChild( document.createTextNode(response.data.process) );
+                            });
+                            } else if (payload.data.status == '3') {
+                            axios
+                            .post("./api/getNotificationDelivered")
+                            .then(response => {
+                                var span = document.getElementById('notifCount');
+                                var span2 = document.getElementById('notifCount2');
+                                var newSales = document.getElementById('delivered-sales');
+                                span.removeChild( span.firstChild );
+                                span2.removeChild( span2.firstChild );
+                                newSales.removeChild( newSales.firstChild );
+                                span.appendChild( document.createTextNode(response.data.process) );
+                                span2.appendChild( document.createTextNode(response.data.process) );
+                                newSales.appendChild( document.createTextNode(response.data.process) );
+                            });
+                            } else if (payload.data.status == '4') {
+                            axios
+                            .post("./api/getNotificationProduct")
+                            .then(response => {
+                                var span = document.getElementById('notifCount');
+                                var span2 = document.getElementById('notifCount2');
+                                var newSales = document.getElementById('notif-product');
+                                span.removeChild( span.firstChild );
+                                span2.removeChild( span2.firstChild );
+                                newSales.removeChild( newSales.firstChild );
+                                span.appendChild( document.createTextNode(response.data.process) );
+                                span2.appendChild( document.createTextNode(response.data.process) );
+                                newSales.appendChild( document.createTextNode(response.data.process) );
+                            });
+                            }
+                            
+                        });
+                }, function(err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
     </script>
 {{-- @stack('scripts') --}}
 {{-- @include('js/js') --}}
