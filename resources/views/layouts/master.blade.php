@@ -195,12 +195,19 @@
     </footer>
 </div>
 
+    @auth
+    <script>
+        window.baseUrl = "{{url('/')}}";
+    </script>
+    @endauth
+
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('/js/dataTables.bootstrap4.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script> --}}
 
 
@@ -228,7 +235,7 @@
         // FCM
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('firebase-messaging-sw.js', {scope: './'}).then(function(registration) {
+                navigator.serviceWorker.register('/firebase-messaging-sw.js', {scope: './'}).then(function(registration) {
                 // Registration was successful
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 const messaging = firebase.messaging();
@@ -239,7 +246,7 @@
                         function sendTokenToServer(token) {
                             console.log(token);            
                             axios
-                            .post("fcm/register-token", {
+                            .post("/fcm/register-token", {
                             token
                             })
                             .then();
@@ -276,49 +283,19 @@
 
                         messaging.onMessage(function(payload) {
                             console.log("Message received. ", payload);
-                            if (payload.data.status == '0') {
-                            axios
-                            .post("./api/getNotification")
-                            .then(response => {
-                                var span = document.getElementById('notifCount');
-                                var span2 = document.getElementById('notifCount2');
-                                var newSales = document.getElementById('new-sales');
-                                span.removeChild( span.firstChild );
-                                span2.removeChild( span2.firstChild );
-                                newSales.removeChild( newSales.firstChild );
-                                span.appendChild( document.createTextNode(response.data.process) );
-                                span2.appendChild( document.createTextNode(response.data.process) );
-                                newSales.appendChild( document.createTextNode(response.data.process) );
-                            });
-                            } else if (payload.data.status == '3') {
-                            axios
-                            .post("./api/getNotificationDelivered")
-                            .then(response => {
-                                var span = document.getElementById('notifCount');
-                                var span2 = document.getElementById('notifCount2');
-                                var newSales = document.getElementById('delivered-sales');
-                                span.removeChild( span.firstChild );
-                                span2.removeChild( span2.firstChild );
-                                newSales.removeChild( newSales.firstChild );
-                                span.appendChild( document.createTextNode(response.data.process) );
-                                span2.appendChild( document.createTextNode(response.data.process) );
-                                newSales.appendChild( document.createTextNode(response.data.process) );
-                            });
-                            } else if (payload.data.status == '4') {
-                            axios
-                            .post("./api/getNotificationProduct")
-                            .then(response => {
-                                var span = document.getElementById('notifCount');
-                                var span2 = document.getElementById('notifCount2');
-                                var newSales = document.getElementById('notif-product');
-                                span.removeChild( span.firstChild );
-                                span2.removeChild( span2.firstChild );
-                                newSales.removeChild( newSales.firstChild );
-                                span.appendChild( document.createTextNode(response.data.process) );
-                                span2.appendChild( document.createTextNode(response.data.process) );
-                                newSales.appendChild( document.createTextNode(response.data.process) );
-                            });
-                            }
+                            Swal.fire({
+                                title: 'Notifikasi',
+                                text: "Anda mendapatkan absensi baru",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Verifikasi'
+                                }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = window.baseUrl + '/verification/index';
+                                }
+                            })
                             
                         });
                 }, function(err) {
