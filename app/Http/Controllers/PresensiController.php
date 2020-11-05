@@ -46,4 +46,16 @@ class PresensiController extends Controller
     {
         return Excel::download(new PresensiExport($data), 'absensi_data_' . date('Y-m-d H:i:s') . '.xlsx');
     }
+
+    public function exportPeriode(Request $request)
+    {
+        $data = lp_absensi::where('status', '!=', '0')
+            ->where("created_at", ">=", $request->startDate . " 00:00:00")
+            ->where("created_at", "<=", $request->endDate . " 23:59:59")->get();
+
+        if (count($data) < 1) {
+            return redirect('presensi/index')->with('status-error', 'Data absensi tidak ditemukan');
+        }
+        return Excel::download(new PresensiExport($data), 'absensi_data_' . $request->startDate . "-" . $request->endDate . '.xlsx');
+    }
 }

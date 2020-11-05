@@ -52,7 +52,7 @@
                       @foreach ($data as $list)
                       <tr>
                         <td>{{ $list->created_at }}</td>
-                        <td>{{ $list->nik }}</td>
+                        <td>{{ $list->NIK }}</td>
                         <td>{{ $list->name }}</td>
                         <td>{{ $list->email }}</td>
                         @if ($list->division == '1')
@@ -70,7 +70,7 @@
                         <td>Tidak diketahui</td>
                         @endif
                         <td>
-                            <a href="{{url('/apk_url/edit/')}}/{{$list->id}}" class="badge badge-warning"><i class="fas fa-edit"></i></a>
+                            <a href="{{url('/employe/show')}}/{{$list->id}}" class="badge badge-warning"><i class="fas fa-edit"></i></a>
                         </td>
                       </tr>
                       @endforeach
