@@ -83,7 +83,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" autocomplete="new-password" value="{{ old("password")}}">
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" autocomplete="new-password" >
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
