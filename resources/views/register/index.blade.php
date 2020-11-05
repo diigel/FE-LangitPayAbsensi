@@ -69,9 +69,9 @@
                             <label>Divisi</label>
                             <select name="division" class="form-control @error('division') is-invalid @enderror">
                               <option value="null" disabled selected>Pilih Divisi</option>
-                              <option value="1">IT</option>
-                              <option value="2">Customer Service</option>
-                              <option value="3">Marketing</option>
+                              <option value="IT">IT</option>
+                              <option value="Customer Service">Customer Service</option>
+                              <option value="Marketing">Marketing</option>
                             </select>
                             @error('division')
                                 <div class="invalid-feedback">{{ $message }}</div>
