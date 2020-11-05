@@ -24,7 +24,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label>NIK</label>
-                            <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="NIK">
+                            <input type="number" name="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="NIK" value="{{ old("nik")}}">
                             @error('nik')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -33,7 +33,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nama">
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nama" value="{{ old("name")}}">
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -42,7 +42,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label>Emal</label>
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" autocomplete="email">
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" autocomplete="email" value="{{ old("email")}}">
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -83,7 +83,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" autocomplete="new-password">
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" autocomplete="new-password" value="{{ old("password")}}">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

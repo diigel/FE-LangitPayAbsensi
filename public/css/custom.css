@@ -1,5 +1,4 @@
 li.page-item {
-
     display: none;
 }
 
@@ -15,4 +14,13 @@ li.page-item {
 .page-item.active,
 .page-item.disabled {
     display: block;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }

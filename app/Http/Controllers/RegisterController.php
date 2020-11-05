@@ -48,12 +48,21 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik'       => 'required',
+            'nik'       => 'required|min:4',
             'name'      => 'required|string|min:4',
             'email'     => 'required|email|max:50|unique:lp_user',
             'gender'    => 'required',
             'division'  => 'required',
             'password'  => 'required|string|min:6',
+        ], [
+            'nik.required'        => 'NIK harus di isi',
+            'name.required'       => 'Nama harus di isi',
+            'email.required'      => 'Email harus di isi',
+            'email.unique'        => 'Email sudah ada',
+            'email.email'         => 'Format email salah',
+            'gender.required'     => 'Gender harus di isi',
+            'division.required'   => 'Divisi harus di isi',
+            'password.required'   => 'Password harus di isi'
         ]);
 
         $data = new lp_user();
