@@ -49,11 +49,11 @@ class RegisterController extends Controller
     {
         $request->validate([
             'nik'       => 'required',
-            'name'      => 'required',
+            'name'      => 'required|string|min:4',
             'email'     => 'required|email|max:50|unique:lp_user',
             'gender'    => 'required',
             'division'  => 'required',
-            'password'  => 'required',
+            'password'  => 'required|string|min:6',
         ]);
 
         $data = new lp_user();

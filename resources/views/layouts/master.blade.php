@@ -208,7 +208,7 @@
     <script src="{{ asset('/js/dataTables.bootstrap4.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 
 
     {{-- <script src="{{ asset('js/app.js') }}"></script>
@@ -231,6 +231,26 @@
                 "bFilter": false
             });
         });
+
+        // Export date Excel
+        $('#startDate').datepicker({
+            weekStart: 1,
+            format: 'yyyy-mm-dd',
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+            orientation: "bottom"
+        });
+        $('#startDate').datepicker("setDate", new Date());
+        $('#endDate').datepicker({
+            weekStart: 1,
+            format: 'yyyy-mm-dd',
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+            orientation: "bottom"
+        });
+        $('#endDate').datepicker("setDate", new Date());
 
         // FCM
         if ('serviceWorker' in navigator) {

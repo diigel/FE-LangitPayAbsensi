@@ -30,11 +30,14 @@ Route::group(['prefix' => 'employe'], function () {
     Route::get('index', [App\Http\Controllers\EmployeController::class, 'index']);
     Route::get('search', [App\Http\Controllers\EmployeController::class, 'index']);
     Route::post('store', [App\Http\Controllers\EmployeController::class, 'store']);
+    Route::get('show/{id}', [App\Http\Controllers\EmployeController::class, 'view']);
+    Route::post('update/{id}', [App\Http\Controllers\EmployeController::class, 'update']);
 });
 
 Route::group(['prefix' => 'presensi'], function () {
     Route::get('index', [App\Http\Controllers\PresensiController::class, 'index']);
     Route::get('search', [App\Http\Controllers\PresensiController::class, 'index']);
+    Route::post('export', [App\Http\Controllers\PresensiController::class, 'exportPeriode']);
 });
 
 Route::group(['prefix' => 'verification'], function () {
