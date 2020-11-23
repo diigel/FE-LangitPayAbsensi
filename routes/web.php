@@ -54,3 +54,12 @@ Route::group(['prefix' => 'verification'], function () {
 Route::group(['prefix' => 'fcm'], function () {
     Route::post('register-token', [App\Http\Controllers\NotificationController::class, 'register']);
 });
+
+Route::group(['prefix' => 'office-location'], function () {
+    Route::get('index', [App\Http\Controllers\officeLocationController::class, 'index']);
+    Route::get('add', [App\Http\Controllers\officeLocationController::class, 'add']);
+    Route::post('store', [App\Http\Controllers\officeLocationController::class, 'store']);
+    Route::get('show/{id}', [App\Http\Controllers\officeLocationController::class, 'show']);
+    Route::post('update/{id}', [App\Http\Controllers\officeLocationController::class, 'update']);
+    Route::get('delete/{id}', [App\Http\Controllers\officeLocationController::class, 'destroy']);
+});

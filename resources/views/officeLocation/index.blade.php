@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Data Absensi</h3>
+                <h3 class="card-title">Data Lokasi Kantor</h3> 
               </div>
               @if (session('status'))
                   <div class="alert alert-default-success">
@@ -19,10 +19,10 @@
                 </div>
               @endif
               <div class="card-body">
-                <form action="{{url('/presensi/search')}}" method="GET">
+                <form action="{{url('/office-location/search')}}" method="GET">
                   <div class="row mb-2">
                     <div class="col">
-                        {{-- <a href="{{url('/register/add')}}" class="btn btn-primary btn-responsive mt-1 mb-2">Tambah data</a> --}}
+                        <a href="{{url('/office-location/add')}}" class="btn btn-primary btn-responsive mt-1 mb-2">Tambah data</a>
                     </div>
                     
                     <div class="col-md-6">
@@ -34,7 +34,7 @@
                             {{-- <button type="submit" name="download" target="_blank" class="btn btn-primary btn-responsive ml-2 mb-2 btn-download"
                           value="1"><i class="fas fa-download"></i></i> Download</button> --}}
 
-                          <a href="#" data-toggle="modal" data-target="#export" class="btn btn-primary btn-responsive ml-2 mb-2 btn-download"><i class="fas fa-download"></i></i> Download</a>
+                          {{-- <a href="#" data-toggle="modal" data-target="#export" class="btn btn-primary btn-responsive ml-2 mb-2 btn-download"><i class="fas fa-download"></i></i> Download</a> --}}
                       </div>
                     </div>
                   </div>
@@ -44,42 +44,25 @@
                     <thead>
                       <tr>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Divisi</th>
-                        <th scope="col">Tipe Absensi</th>
-                        <th scope="col">Gambar</th>
-                        <th scope="col">Verifikasi</th>
+                        <th scope="col">Nama Kantor</th>
                         <th scope="col">Alamat</th>
-                        <th scope="col">Catatan</th>
+                        <th scope="col">Latitude</th>
+                        <th scope="col">Longitude</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($data as $list)
                       <tr>
                         <td>{{ $list->created_at }}</td>
-                        <td>{{ $list->name }}</td>
-                        <td>{{ $list->division }}</td>
-
-                        @if ($list->type_absensi == '1')
-                        <td>Kantor</td>
-                        @else
-                        <td>Luar Kantor</td>
-                        @endif
-                        <td>
-                          <img class="img rounded" width="120" height="120" src="{{"http://abb466e83277.ngrok.io/langitpayabsensi/public/storage/Image". $list->image }}">
-                        </td>
-                        
-                        @if ($list->verification == '1')
-                        <td><span class="badge badge-success">Accept</span></td>
-                        @elseif ($list->verification == '2')
-                        <td><span class="badge badge-danger">Reject</span></td>
-                        @else
-                        <td><span class="badge badge-warning">Proses</span></td>
-                        @endif
-
+                        <td>{{ $list->office_name }}</td>
                         <td>{{ $list->address }}</td>
-
-                        <td>{{ $list->noted }}</td>
+                        <td>{{ $list->lat }}</td>
+                        <td>{{ $list->long }}</td>
+                        <td>
+                          <a href="{{url('office-location/show')}}/{{$list->id}}" class="badge badge-warning">Edit</a>
+                          <a href="{{url('office-location/delete')}}/{{$list->id}}" class="badge badge-danger">Delete</a>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>

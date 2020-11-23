@@ -55,13 +55,7 @@
                         <td>{{ $list->NIK }}</td>
                         <td>{{ $list->name }}</td>
                         <td>{{ $list->email }}</td>
-                        @if ($list->division == '1')
-                        <td>IT</td>
-                        @elseif($list->division == '2')
-                        <td>Customer Service</td>
-                        @else
-                        <td>Marketing</td>
-                        @endif
+                        <td>{{ $list->division }}</td>
                         @if ($list->gender == '1')
                         <td>Laki - Laki</td>
                         @elseif($list->gender == '2')

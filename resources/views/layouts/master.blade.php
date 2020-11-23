@@ -142,6 +142,14 @@
         </ul>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
+                <a href="{{ url('/office-location/index') }}" class="nav-link active">
+                    <i class="nav-icon fas fa-map-pin"></i>
+                    <p>Lokasi Kantor</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
                 {{-- <a href="{{ url('/index/chart') }}" class="nav-link active">
                     <i class="nav-icon fas fa-file-export"></i>
                     <p>Report</p>
