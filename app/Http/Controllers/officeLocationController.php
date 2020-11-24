@@ -28,8 +28,11 @@ class officeLocationController extends Controller
         ], [
             'name.required'        => 'Nama kantor harus di isi',
             'address.required'       => 'Alamat harus di isi',
+            'address.unique'      => 'Alamat sudah ada',
             'lat.required'      => 'Latitude harus di isi',
+            'lat.unique'        => 'Latitude sudah ada',
             'long.required'      => 'Longtitude harus di isi',
+            'long.unique'        => 'Longtitude sudah ada',
         ]);
 
         $data = new officeLocation();
@@ -58,8 +61,11 @@ class officeLocationController extends Controller
         ], [
             'name.required'        => 'Nama kantor harus di isi',
             'address.required'       => 'Alamat harus di isi',
+            'address.unique'      => 'Alamat sudah ada',
             'lat.required'      => 'Latitude harus di isi',
+            'lat.unique'        => 'Latitude sudah ada',
             'long.required'      => 'Longtitude harus di isi',
+            'long.unique'        => 'Longtitude sudah ada',
         ]);
 
         $data = officeLocation::find($id);
