@@ -34,7 +34,7 @@
                             {{-- <button type="submit" name="download" target="_blank" class="btn btn-primary btn-responsive ml-2 mb-2 btn-download"
                           value="1"><i class="fas fa-download"></i></i> Download</button> --}}
 
-                          <a href="#" data-toggle="modal" data-target="#export" class="btn btn-primary btn-responsive ml-2 mb-2 btn-download"><i class="fas fa-download"></i></i> Download</a>
+                          <a href="#" data-toggle="modal" data-target="#export" class="btn btn-primary btn-responsive ml-2 mb-2 btn-download"><i class="fas fa-download"></i></i> Export Data</a>
                       </div>
                     </div>
                   </div>
