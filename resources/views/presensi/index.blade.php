@@ -66,7 +66,7 @@
                         <td>Luar Kantor</td>
                         @endif
                         <td>
-                          <img class="img rounded" width="120" height="120" src="{{"http://abb466e83277.ngrok.io/langitpayabsensi/public/storage/Image". $list->image }}">
+                          <img class="img rounded" width="120" height="120" src="{{"https://dev.langitpayment.com/digel/LangitPayAbsensi/storage/Image/". $list->image }}">
                         </td>
                         
                         @if ($list->verification == '1')
