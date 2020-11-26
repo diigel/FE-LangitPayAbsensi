@@ -66,7 +66,9 @@
                         <td>Luar Kantor</td>
                         @endif
 
-                        <td>{{ $list->image }}</td>
+                        <td>
+                            <img class="img rounded" width="200" height="200" src="{{"http://api.com". $list->image }}">
+                        </td>
                         
                         @if ($list->verification == '0')
                         <td><span class="badge badge-warning">Proses</span></td>
