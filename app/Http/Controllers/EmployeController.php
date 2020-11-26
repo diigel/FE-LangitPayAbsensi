@@ -63,6 +63,6 @@ class EmployeController extends Controller
         $data->gender   = $request->gender;
         $data->save();
 
-        return redirect('employe/index')->with('status', 'Karyawan berhasil ditambah');
+        return redirect('employe/index')->with('status', 'Karyawan berhasil diubah');
     }
 }

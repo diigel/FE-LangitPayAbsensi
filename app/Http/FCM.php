@@ -22,8 +22,8 @@ class FCM
         $fields = array(
             'to'    => $token,
             'data'  => array(
-                'title'                 => "Notification",
-                'message'               => "Notification Verification Sent",
+                'title'                 => "Verifikasi",
+                'message'               => "Absen anda sudah di verifikasi, dan anda berhasil absen, Selamat Berkerja !!!",
 
             )
         );

@@ -63,7 +63,9 @@
                         <td>Luar Kantor</td>
                         @endif
 
-                        <td>{{ $list->image }}</td>
+                        <td>
+                          <img class="img rounded" width="120" height="120" src="{{"https://dev.langitpayment.com/digel/LangitPayAbsensi/storage/Image/". $list->image }}">
+                        </td>
                         
                         @if ($list->verification == '0')
                         <td><span class="badge badge-warning">Proses</span></td>
