@@ -272,9 +272,10 @@
                 );
 
                         function sendTokenToServer(token) {
-                            console.log(token);            
+                            console.log(token);  
+                            const url = window.baseUrl;          
                             axios
-                            .post("/fcm/register-token", {
+                            .post(url + "/fcm/register-token", {
                             token
                             })
                             .then();
