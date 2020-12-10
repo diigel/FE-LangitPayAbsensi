@@ -49,7 +49,7 @@ class PresensiController extends Controller
 
     public function exportPeriode(Request $request)
     {
-        $data = lp_absensi::where('status', '!=', '0')
+        $data = lp_absensi::where('verification', '!=', '0')
             ->where("created_at", ">=", $request->startDate . " 00:00:00")
             ->where("created_at", "<=", $request->endDate . " 23:59:59")->get();
 
